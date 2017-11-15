@@ -9,7 +9,7 @@ class Point {
     return newPoint;
   }
 }
-let total = new Point(7, 9);
-let total2 = new Point(1, 1);
+let total = new Point(14, 9);
+let total2 = new Point(1, 19);
 
 total.plus(total2);
