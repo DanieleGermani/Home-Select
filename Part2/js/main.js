@@ -2,7 +2,6 @@ $(document).ready(function() {
   $("#searchUser").on('keyup', (event) => {
     let username = event.target.value;
 
-
     $.ajax({
       url: `https://api.github.com/users/${username}`,
       data: {
@@ -16,9 +15,10 @@ $(document).ready(function() {
        <div class="row">
          <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
             <div class="well profile">
-                 <div class="col-sm-12">
+                 <div class="col-sm-12 margin-bottom">
                      <div class="col-xs-12 col-sm-8">
                          <h2>${user.name}</h2>
+                         <p><strong>Id:</strong> ${user.id}</p>
                          <p><strong>About: </strong>${user.bio}</p>
                          <p><strong>Location: </strong> ${user.location} </p>
                          <p><strong>Blog:</strong> ${user.blog}</p>
@@ -34,12 +34,12 @@ $(document).ready(function() {
                      <div class="col-xs-12 col-sm-4 emphasis">
                          <h2><strong> ${user.followers} </strong></h2>
                          <p><small>Followers</small></p>
-                         <a href="${user.followers_url}" target="_blank"><button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Followers </button></a>
+                         <a href="https://github.com/${user.login}?tab=followers" target="_blank"><button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span> Followers </button></a>
                      </div>
                      <div class="col-xs-12 col-sm-4 emphasis">
                          <h2><strong>${user.following}</strong></h2>
                          <p><small>Following</small></p>
-                         <a href="${user.following_url}" target="_blank"><button class="btn btn-info btn-block"><span class="fa fa-user"></span> Following </button>
+                         <a href="https://github.com/${user.login}?tab=following" target="_blank"><button class="btn btn-info btn-block"><span class="fa fa-user"></span> Following </button></a>
                      </div>
                      <div class="col-xs-12 col-sm-4 emphasis">
                          <h2><strong>${user.public_repos}</strong></h2>
@@ -57,8 +57,6 @@ $(document).ready(function() {
        <div class=" col-md-4" id="repos"></div>
        </div>
        `);
-
-
     });
 
     $.ajax({
@@ -82,21 +80,18 @@ $(document).ready(function() {
                <a href="${follower.html_url}"><p>Id: ${follower.id}</p></a>
              </div>
              <div class="col-md-4">
-               <a href="${follower.repos_url}" target="_blank" class="btn btn-default">Repos Page</a>
+               <a href="https://github.com/${follower.login}?tab=repositories" target="_blank" class="btn btn-default">Repos Page</a>
              </div>
            </div>
          </div>`);
       });
-
     });
-
 
     $.ajax({
       url: `https://api.github.com/users/${username}/following`,
       data: {
         client_id: '8ea9d5428e546ec4583b',
         client_secret: '5475e3a95edbd22f8c2b1171a9c81cf405cac590',
-
       }
 
     }).then((following) => {
@@ -113,13 +108,11 @@ $(document).ready(function() {
                <a href="${follower.html_url}"><p>Id: ${follower.id}</p></a>
              </div>
              <div class="col-md-4">
-               <a href="${follower.repos_url}" target="_blank" class="btn btn-default">Repos Page</a>
+               <a href="https://github.com/${follower.login}?tab=repositories" target="_blank" class="btn btn-default">Repos Page</a>
              </div>
            </div>
          </div>`);
-
       });
-
     });
 
     $.ajax({
@@ -128,7 +121,7 @@ $(document).ready(function() {
         client_id: '8ea9d5428e546ec4583b',
         client_secret: '5475e3a95edbd22f8c2b1171a9c81cf405cac590',
         sort: 'created: asc',
-        per_page: 6
+        per_page: 10
       }
 
     }).then((repos) => {
@@ -145,19 +138,8 @@ $(document).ready(function() {
              </div>
            </div>
          </div>`);
-
-
       });
-
     });
-
-
-
-
-
-
-
-
 
   });
 });
