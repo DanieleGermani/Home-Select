@@ -1,5 +1,35 @@
-@import "./profile";
-
 body {
+  font-family: 'Lato', 'sans-serif';
   background-color: grey;
+}
+
+div{
+  .profile {
+    min-height: 355px;
+    display: inline-block;
+    margin-top: 25px;
+  }
+}
+
+
+.divider {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.emphasis {
+  border-top: 4px solid transparent;
+}
+
+.margin-bottom{
+  margin-bottom: 10px;
+}
+
+.emphasis:hover {
+  border-top: 4px solid #1abc9c;
+}
+
+.emphasis {
+  h2 {
+    margin-bottom: 0;
+  }
 }
