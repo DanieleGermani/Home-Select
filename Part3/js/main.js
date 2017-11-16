@@ -1,3 +1,5 @@
+
+
 $('.add-to-cart').click(function(event){
     event.preventDefault();
     let name = $(this).attr("data-name");
@@ -5,6 +7,7 @@ $('.add-to-cart').click(function(event){
     let code = $(this).attr("data-code");
 
     addItemToCart(code, name, price, 1);
+    console.log(code)
     displayCart();
 });
 
@@ -16,9 +19,10 @@ function displayCart(){
 
     }
     $("#show-cart").html(output);
+    $('#total-cart').html( totalCart() );
+
 
 }
-
 
 let cart = [];
 let totalPriceGr1 = 0;
@@ -34,33 +38,16 @@ let Item = function(code, name, price, count) {
 };
 
 function addItemToCart(code, name, price, count) {
-
   for (let i in cart) {
     if (cart[i].code === code) {
       cart[i].count += count;
       return;
-
     }
   }
   let item = new Item(code, name, price, count);
   cart.push(item);
   saveCart();
 }
-addItemToCart("GR1","Grean Tea", 3.11,3);
-addItemToCart("SR1","Strawberries", 5.00,1);
-addItemToCart("CF1","Cofee", 11.23,1);
-console.log(totalCart())
-
-
-
-console.log(cart);
-
-console.log('total de dos productos es '+(totalPriceSr1 + totalPriceGr1 + totalPriceNotDiscount ));
-console.log('total del tea '+totalPriceGr1);
-console.log('total del tea '+totalPriceSr1);
-console.log('total del tea '+totalPriceNotDiscount);
-
-
 
 
 function removeItemFromCart(name) {
@@ -87,34 +74,33 @@ function removeItemFromCartAll(name){
   saveCart();
 }
 
+
 function clearCart(){
   cart = [];
   saveCart();
 }
 
+
 function countCart(){
   let totalCount = 0;
+
   for(let i in cart){
     totalCount += cart[i].count;
   }
   return totalCount;
 }
 
-function totalCart(){
-  discountSr1();
-  discountGr1();
-  notDiscount();
-let totalCart = totalPriceGr1 + totalPriceNotDiscount + totalPriceSr1;
-return totalCart;
-}
 
-// function totalCart(){
-//   let totalCost = 0;
-//   for(let i in cart){
-//     totalCost += cart[i].price;
-//   }
-//   return totalCost;
-// }
+function totalCart(){
+let totalCartDiscount = 0;
+discountSr1();
+discountGr1();
+notDiscount();
+for (var i in cart) {
+  totalCartDiscount = totalPriceGr1 + totalPriceSr1 + totalPriceNotDiscount;
+}
+return totalCartDiscount;
+}
 
 
 function listCart(){
@@ -138,7 +124,7 @@ function saveCart(){
 function loadCart(){
   cart = JSON.parse(localStorage.getItem("shoppingCart"));
 }
-loadCart();
+// loadCart();
 displayCart();
 
 var array = listCart();
@@ -180,4 +166,3 @@ function  notDiscount() {
   return totalPriceNotDiscount;
 
 }
-console.log(totalCart());
