@@ -64,6 +64,7 @@ $(document).ready(function() {
       data: {
         client_id: '8ea9d5428e546ec4583b',
         client_secret: '5475e3a95edbd22f8c2b1171a9c81cf405cac590',
+        per_page: 30
       }
 
     }).then((followers) => {
@@ -92,6 +93,7 @@ $(document).ready(function() {
       data: {
         client_id: '8ea9d5428e546ec4583b',
         client_secret: '5475e3a95edbd22f8c2b1171a9c81cf405cac590',
+        per_page: 30
       }
 
     }).then((following) => {
