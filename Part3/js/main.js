@@ -113,6 +113,9 @@ function removeItemFromCartAll(name) {
 
 function clearCart() {
   cart = [];
+  totalPriceGr1 = 0;
+  totalPriceSr1 = 0;
+  totalPriceNotDiscount = 0;
   saveCart();
 }
 
@@ -126,14 +129,14 @@ function countCart() {
 }
 
 function totalCart() {
-  let totalCart = 0;
+  let totalCost = 0;
   discountSr1();
   discountGr1();
   notDiscount();
   for (var i in cart) {
-    totalCart = totalPriceGr1 + totalPriceSr1 + totalPriceNotDiscount;
+    totalCost = totalPriceGr1 + totalPriceSr1 + totalPriceNotDiscount;
   }
-  return totalCart.toFixed(2);
+  return totalCost.toFixed(2);
 }
 
 function listCart() {
