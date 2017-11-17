@@ -58,7 +58,7 @@ $(document).ready(function() {
        </div>
        `);
     });
-
+  
     $.ajax({
       url: `https://api.github.com/users/${username}/followers`,
       data: {

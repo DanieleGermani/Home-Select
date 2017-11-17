@@ -3,6 +3,9 @@ h1{
   margin: 50px auto 0;
   text-align: center;
 }
+.panel-info{
+  background-color: azure;
+}
 
 .product {
   width: 100%;
@@ -10,6 +13,7 @@ h1{
   display: flex;
   justify-content: center;
   background-color: #d8edf8;
+  color:#31708f;
 }
 
 .in-row {
@@ -19,9 +23,6 @@ h1{
   width: 15%;
 }
 
-body {
-	margin-top: 20px;
-}
 .btn-success {
     color: #fff;
     background-color: #347ab7;
